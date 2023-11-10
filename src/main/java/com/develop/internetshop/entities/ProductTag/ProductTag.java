@@ -1,11 +1,10 @@
 package com.develop.internetshop.entities.ProductTag;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-
 import com.develop.internetshop.entities.Product.Product;
 import com.develop.internetshop.entities.Tag.Tag;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
