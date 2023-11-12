@@ -2,17 +2,17 @@ package com.develop.internetshop.entities.ProductTag;
 
 import java.io.Serializable;
 
-import com.develop.internetshop.entities.Product.Product;
-import com.develop.internetshop.entities.Tag.Tag;
-
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Embeddable;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @ToString
 @Getter
+
+@Embeddable
 public class ProductTagId implements Serializable {
-    private Product product;
-    private Tag tag;
+    private Long product;
+    private Long tag;
 }

@@ -2,9 +2,7 @@ package com.develop.internetshop.entities.ProductCategory;
 
 import java.io.Serializable;
 
-import com.develop.internetshop.entities.Category.Category;
-import com.develop.internetshop.entities.Product.Product;
-
+import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -12,7 +10,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Getter
+
+@Embeddable
 public class ProductCategoryId implements Serializable {
-    private Product product;
-    private Category category;
+    private Long product;
+    private Long category;
 }
