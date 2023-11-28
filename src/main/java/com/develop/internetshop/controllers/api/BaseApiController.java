@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,8 +42,10 @@ public class BaseApiController<T, ID> {
     @PutMapping("/{id}")
     public ResponseEntity<T> putProduct(@PathVariable ID id, @RequestBody T newProduct) {
         return (repository.existsById(id)) ?
-            new ResponseEntity(newProduct, HttpStatus.OK) :
-            new ResponseEntity(postProduct(newProduct), HttpStatus.CREATED);
+            ResponseEntity.status(HttpStatus.OK).body(newProduct) :
+            ResponseEntity.status(HttpStatus.CREATED).body(postProduct(newProduct));
+            // new ResponseEntity(newProduct, HttpStatus.OK) :
+            // new ResponseEntity(postProduct(newProduct), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

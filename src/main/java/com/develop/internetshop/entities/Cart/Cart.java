@@ -14,9 +14,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Cart
@@ -24,9 +25,11 @@ import lombok.ToString;
 @Entity
 @Table(name = "cart_table")
 
-@Getter
-@ToString
-@RequiredArgsConstructor
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,23 +37,23 @@ public class Cart {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private final User user;
+    private User user;
 
     @Column(name = "session_id", length = 100)
-    private final String sessionId;
+    private String sessionId;
 
     @Column(name = "token", length = 100)
-    private final String Token;
+    private String Token;
 
     @Column(name = "status")
-    private final CartStatus status;
+    private CartStatus status;
 
     @Column(name = "created_at")
-    private final Date createdAt;
+    private Date createdAt;
 
     @Column(name = "updated_at")
-    private final Date updatedAt;
+    private Date updatedAt;
 
     @Column(name = "content")
-    private final String content;
+    private String content;
 }

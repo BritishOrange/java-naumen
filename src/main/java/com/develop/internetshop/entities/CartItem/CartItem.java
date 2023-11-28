@@ -15,9 +15,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * CartItem
@@ -25,9 +26,11 @@ import lombok.ToString;
 @Entity
 @Table(name = "cart_item_table")
 
-@Getter
-@ToString
-@RequiredArgsConstructor
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,30 +38,30 @@ public class CartItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private final Product product;
+    private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
-    private final Cart cart;
+    private Cart cart;
 
     @Column(name = "sku", nullable = false)
-    private final String sku;
+    private String sku;
 
     @Column(name = "price", scale = 2)
-    private final float price;
+    private float price;
 
     @Column(name = "discount", scale = 2)
-    private final float discount;
+    private float discount;
 
     @Column(name = "is_active")
-    private final boolean isActive;
+    private boolean isActive;
 
     @Column(name = "created_at")
-    private final Date createdAt;
+    private Date createdAt;
 
     @Column(name = "updated_at")
-    private final Date updatedAt;
+    private Date updatedAt;
 
     @Column(name = "content", length = 500)
-    private final Date content;
+    private Date content;
 }

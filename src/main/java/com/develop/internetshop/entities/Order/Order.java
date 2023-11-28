@@ -13,9 +13,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Order
@@ -23,42 +24,44 @@ import lombok.ToString;
 @Entity
 @Table(name = "order_table")
 
-@Getter
-@ToString
-@RequiredArgsConstructor
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private final User user;
+    private User user;
 
     @Column(name = "session_id", length = 100)
-    private final String sessionId;
+    private String sessionId;
 
     @Column(name = "token", length = 100)
-    private final String Token;
+    private String Token;
 
     @Column(name = "status", length = 100)
-    private final OrderStatus status;
+    private OrderStatus status;
 
     @Column(name = "sub_total", scale = 2)
-    private final float subTotal;
+    private float subTotal;
 
     @Column(name = "item_discount", scale = 2)
-    private final float itemDiscount;
+    private float itemDiscount;
 
     @Column(name = "total", scale = 2)
-    private final float total;
+    private float total;
 
     @Column(name = "created_at")
-    private final Date createdAt;
+    private Date createdAt;
 
     @Column(name = "updated_at")
-    private final Date updatedAt;
+    private Date updatedAt;
 
     @Column(name = "content")
-    private final String content;
+    private String content;
 
 }

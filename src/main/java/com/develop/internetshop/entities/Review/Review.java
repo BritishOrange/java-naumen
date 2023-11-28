@@ -14,9 +14,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Review
@@ -24,9 +25,11 @@ import lombok.ToString;
 @Entity
 @Table(name = "review_table")
 
-@Getter
-@RequiredArgsConstructor
-@ToString
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,18 +37,18 @@ public class Review {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private final User user;
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private final Product product;
+    private Product product;
 
     @Column(name = "content", length = 500)
-    private final String content;
+    private String content;
 
     @Column(name = "rating")
-    private final byte rating;
+    private byte rating;
 
     @Column(name = "published_at", nullable = false)
-    private final Date publishedAt;
+    private Date publishedAt;
 }

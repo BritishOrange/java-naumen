@@ -15,9 +15,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Transaction
@@ -25,9 +26,11 @@ import lombok.ToString;
 @Entity
 @Table(name = "transaction_table")
 
-@Getter
-@ToString
-@RequiredArgsConstructor
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,30 +38,30 @@ public class Transaction {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private final User user;
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private final Order order;
+    private Order order;
 
     @Column(name = "code", length = 100, nullable = false)
-    private final String code;
+    private String code;
 
     @Column(name = "typr")
-    private final TransactionType type;
+    private TransactionType type;
 
     @Column(name = "mode")
-    private final TransactionMode mode;
+    private TransactionMode mode;
 
     @Column(name = "status")
-    private final TransactionStatus status;
+    private TransactionStatus status;
 
     @Column(name = "created_at")
-    private final Date createdAt;
+    private Date createdAt;
 
     @Column(name = "updated_at")
-    private final Date updatedAt;
+    private Date updatedAt;
 
     @Column(name = "content", length = 500)
-    private final Date content;
+    private Date content;
 }

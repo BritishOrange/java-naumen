@@ -4,8 +4,9 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * ProductCategory
@@ -14,10 +15,11 @@ import lombok.ToString;
 @Entity
 @Table(name = "product_category_table")
 
-
-@Getter
-@ToString
+@Data
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
+
 public class ProductCategory {
 
     @EmbeddedId
