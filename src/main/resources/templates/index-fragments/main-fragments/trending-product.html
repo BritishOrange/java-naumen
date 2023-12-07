@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <section class="section-margin calc-60px" th:fragment="trending-product">
+        <div class="container">
+          <div class="section-intro pb-60px">
+            <p>Популярное</p>
+            <h2>Трендовые <span class="section-intro__style">Товары</span></h2>
+          </div>
+          <div class="row">
+            <div th:each="product, iterStat : ${products}" th:if="${iterStat.index lt 8}" class="col-md-6 col-lg-6 col-xl-3">
+              <div class="card text-center card-product">
+                <div class="card-product__img">
+                  <img class="card-img" th:src="${product.photoUrl}" alt="">
+                  <ul class="card-product__imgOverlay">
+                    <li><button><i class="ti-search"></i></button></li>
+                    <li><button><i class="ti-shopping-cart"></i></button></li>
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <p th:text="${product.category.title}"></p>
+                  <h4 class="card-product__title"><a href="./single-product.html" th:text="${product.title}"></a></h4>
+                  <p class="card-product__price" th:text="${product.price}">$</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>

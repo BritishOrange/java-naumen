@@ -9,5 +9,6 @@ public class InternetShopApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(InternetShopApplication.class, args);
 	}
-
+	// контекст эндпоинта, userPrincipal - извлечение при обратке запроса
+	// пользователь в ThreadLocal
 }

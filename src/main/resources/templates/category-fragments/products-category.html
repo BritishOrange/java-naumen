@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <section th:fragment="products-category" class="section-margin--small mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-5">
+                    <div class="sidebar-categories">
+                        <div class="head">Категории</div>
+                        <ul class="main-categories">
+                            <li class="common-filter">
+                                <ul>
+                                    <li th:each="category, iterStat : ${categories}" th:if="${iterStat.index lt 10}"
+                                        class="filter-list">
+                                        <input class="pixel-radio" type="radio" th:id="${category.id}" name="brand">
+                                        <label th:text="${category.title}"
+                                            th:for="${category.id}"><span>(29)</span></label>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-filter">
+                        <div class="top-filter-head">Фильтры</div>
+                        <div class="common-filter">
+                            <div class="head">Теги</div>
+                            <form action="#">
+                                <ul>
+                                    <li th:each="tag, iterStat : ${tags}" th:if="${iterStat.index lt 10}"
+                                        class="filter-list">
+                                        <input class="pixel-radio" type="radio" id="black" name="color">
+                                        <label th:text="${tag.title}" for="black"><span>(29)</span></label>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                        <div class="common-filter">
+                            <div class="head">Price</div>
+                            <div class="price-range-area">
+                                <div id="price-range"></div>
+                                <div class="value-wrapper d-flex">
+                                    <div class="price">Price:</div>
+                                    <span>$</span>
+                                    <div id="lower-value"></div>
+                                    <div class="to">to</div>
+                                    <span>$</span>
+                                    <div id="upper-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-7">
+                    <div class="filter-bar d-flex flex-wrap align-items-center">
+                        <div class="sorting">
+                            <select>
+                                <option value="1">Все</option>
+                                <option value="2">По популярности</option>
+                                <option value="3">По цене</option>
+                            </select>
+                        </div>
+                        <div class="sorting mr-auto">
+                            <select>
+                                <option value="1">Показать 12</option>
+                                <option value="2">Показать 24</option>
+                                <option value="3">Показать 36</option>
+                            </select>
+                        </div>
+                        <div>
+                            <div class="input-group filter-bar-search">
+                                <input type="text" placeholder="Искать">
+                                <div class="input-group-append">
+                                    <button type="button"><i class="ti-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <section
+                        th:replace="~{category-fragments/products-category-fragments/products-row :: products-row}">
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -44,8 +44,6 @@ public class BaseApiController<T, ID> {
         return (repository.existsById(id)) ?
             ResponseEntity.status(HttpStatus.OK).body(newProduct) :
             ResponseEntity.status(HttpStatus.CREATED).body(postProduct(newProduct));
-            // new ResponseEntity(newProduct, HttpStatus.OK) :
-            // new ResponseEntity(postProduct(newProduct), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

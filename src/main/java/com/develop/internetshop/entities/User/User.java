@@ -61,7 +61,11 @@ public class User implements UserDetails {
     @Schema(description = "Email")
     private String email;
 
-    @Column(name = "password_hash", length = 32, nullable = false)
+    @Column(name = "password", length = 32, nullable = false)
+    @Schema(description = "Пароль")
+    private String password;
+
+    @Column(name = "password_hash", length = 200, nullable = false)
     @Schema(description = "Хеш пароля")
     private String passwordHash;
 

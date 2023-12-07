@@ -55,6 +55,10 @@ public class Product {
     @Schema(description = "Описание товара")
     private String descriprion;
 
+    @Column(name = "photo_url")
+    @Schema(description = "ссылка на изображение")
+    private String photoUrl;
+
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     @Schema(description = "Категория товара")

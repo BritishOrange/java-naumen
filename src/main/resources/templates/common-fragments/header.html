@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+  <header class="header_area" th:fragment="header">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand logo_h" th:href="@{/}"><img src="./img/logo.svg" alt="">ТехноБазар</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item"><a class="nav-link" th:href="@{/}">Главная</a></li>
+              <li class="nav-item submenu dropdown">
+                <a th:href="@{/category}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Магазин</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" th:href="@{/category}">Категории</a></li>
+                  <li class="nav-item"><a class="nav-link" th:href="@{/confirmation}">Подтверждение</a></li>
+                  <li class="nav-item"><a class="nav-link" th:href="@{/cart}">Корзина</a></li>
+                </ul>
+              </li>
+              <li class="nav-item submenu dropdown">
+                <a href="./#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Вход</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" th:href="@{/login}">Войти</a></li>
+                  <li class="nav-item"><a class="nav-link" th:href="@{/register}">Регистрация</a></li>
+                </ul>
+              </li>
+            </ul>
+
+            <ul class="nav-shop">
+              <li class="nav-item"><button><a th:href="@{/category}"><i class="ti-search"></i></a></button></li>
+              <li class="nav-item"><button><a th:href="@{/cart}"><i class="ti-shopping-cart"></i><span
+                    class="nav-shop__circle">3</span></a></button> </li>
+              <li class="nav-item"><a class="button button-header" th:href="@{/cart}">Купить сейчас</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+</body>
+
+</html>

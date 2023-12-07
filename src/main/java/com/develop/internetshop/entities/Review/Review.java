@@ -43,7 +43,7 @@ public class Review {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(name = "content", length = 500)
+    @Column(name = "content", length = 1200)
     private String content;
 
     @Column(name = "rating")

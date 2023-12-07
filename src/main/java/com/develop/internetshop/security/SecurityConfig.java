@@ -2,51 +2,48 @@ package com.develop.internetshop.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
-    private final PasswordEncoder pwEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
+public class SecurityConfig{
     @Bean
-    UserDetailsService authentication() {
-        UserDetails peter = User.builder()
-                .username("peter")
-                .password(pwEncoder.encode("ppassword"))
-                .roles("USER")
-                .build();
-        UserDetails jodie = User.builder()
-                .username("jodie")
-                .password(pwEncoder.encode("jpassword"))
-                .roles("USER", "ADMIN")
-                .build();
-        System.out.println(" >>> Peter's password: " + peter.getPassword());
-        System.out.println(" >>> Jodie's password: " + jodie.getPassword());
-        return new InMemoryUserDetailsManager(peter, jodie);
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // анонимный пользователь
         http
-			.cors(cor -> cor.disable())
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> {
-                auth.requestMatchers("/**").permitAll();
-            })
-            .formLogin(formLogin -> {
-                formLogin.loginPage("/login");
-            });
+            .authorizeHttpRequests((authorize) ->
+                authorize.anyRequest().authenticated()
+            ).formLogin(
+                form -> form
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/")
+                    .permitAll()
+            ).logout(
+                logout -> logout
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .permitAll()
+            );
+        return http.build();
+    }
 
-		return http.build();
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
     }
 }

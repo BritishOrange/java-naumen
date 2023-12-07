@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <main class="site-main" th:fragment="main">
+        <section th:replace="~{index-fragments/main-fragments/banner :: banner}"></section>
+        <section th:replace="~{index-fragments/main-fragments/carousel :: carousel}"></section>
+        <section th:replace="~{index-fragments/main-fragments/trending-product :: trending-product}"></section>
+        <section th:replace="~{index-fragments/main-fragments/offer :: offer}"></section>
+        <section th:replace="~{index-fragments/main-fragments/best-selling :: best-selling}"></section> 
+        <section th:replace="~{common-fragments/subscribe :: subscribe}"></section>
+      </main>
+</body>
+
+</html>
