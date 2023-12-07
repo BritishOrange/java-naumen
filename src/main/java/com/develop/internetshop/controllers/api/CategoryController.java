@@ -11,7 +11,7 @@ import com.develop.internetshop.entities.Category.CategoryRepository;
 */
 @RestController
 @RequestMapping(path = "api/v1/categories")
-public class CategoryController extends BaseApiController<Category, Long> {
+public class CategoryController extends BaseApiController<Category, String> {
     public CategoryController(CategoryRepository categoryRepository) {
         super(categoryRepository);
     }

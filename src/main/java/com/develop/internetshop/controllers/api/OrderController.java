@@ -11,7 +11,7 @@ import com.develop.internetshop.entities.Order.OrderRepository;
 */
 @RestController
 @RequestMapping(path = "api/v1/order")
-public class OrderController extends BaseApiController<Order, Long> {
+public class OrderController extends BaseApiController<Order, String> {
     public OrderController(OrderRepository orderRepository) {
         super(orderRepository);
     }

@@ -1,34 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ТехноБазар - Главная</title>
-  <link rel="icon" href="./img/Fevicon.svg" type="image/svg">
-  <link rel="stylesheet" href="./vendors/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="./vendors/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="./vendors/themify-icons/themify-icons.css">
-  <link rel="stylesheet" href="./vendors/nice-select/nice-select.css">
-  <link rel="stylesheet" href="./vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="./vendors/owl-carousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="./css/style.css">
+<head th:replace="~{ common-fragments/head :: common_header(~{::title},~{::link}) }">
+	<title>ТехноБазар - Главная</title>
+	<link></link>
 </head>
 
 <body>
   <header th:replace="~{common-fragments/header :: header}"></header>
   <main th:replace="~{index-fragments/main :: main}"></main>
   <footer th:replace="~{common-fragments/footer :: footer}"></footer>
-
-  <script src="./vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="./vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="./vendors/skrollr.min.js"></script>
-  <script src="./vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="./vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="./vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="./vendors/mail-script.js"></script>
-  <script src="./js/main.js"></script>
+  <section th:replace="~{common-fragments/scripts :: scripts}" th:remove="tag"></section>
 </body>
 
 </html>

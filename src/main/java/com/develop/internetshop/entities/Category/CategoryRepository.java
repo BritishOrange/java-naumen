@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 /**
  * CategoryRepository
  */
-public interface CategoryRepository extends JpaRepository<Category, Long> {
+public interface CategoryRepository extends JpaRepository<Category, String> {
     @Query(
         value = "SELECT * FROM user_table ut WHERE ut.title = ?1", 
         nativeQuery = true

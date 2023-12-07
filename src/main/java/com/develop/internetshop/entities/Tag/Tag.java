@@ -23,8 +23,8 @@ import lombok.NoArgsConstructor;
 
 public class Tag {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column(name = "title", length = 75, nullable = false)
     private String title;

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * ReviewRepository
  */
 @Repository
-public interface ReviewRepository extends CrudRepository<Review, Long> {
+public interface ReviewRepository extends CrudRepository<Review, String> {
 }

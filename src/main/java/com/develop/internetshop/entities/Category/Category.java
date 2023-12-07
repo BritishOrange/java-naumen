@@ -25,9 +25,9 @@ import lombok.ToString;
 @Schema(description = "Сущность категории")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Schema(description = "Уникальный идентификатор")
-    private Long id;
+    private String id;
 
     @Column(name = "parent_id")
     @Schema(description = "Родительская категория")

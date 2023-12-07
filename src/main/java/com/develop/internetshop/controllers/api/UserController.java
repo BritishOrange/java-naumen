@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping(path = "api/v1/user")
 
 @Tag(name="Users", description="User REST controller")
-public class UserController extends BaseApiController<User, Long> {
+public class UserController extends BaseApiController<User, String> {
     public UserController(UserRepository userRepository) {
         super(userRepository);
     }

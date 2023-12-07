@@ -37,9 +37,9 @@ import lombok.NoArgsConstructor;
 @Schema(description = "Сущность пользователя")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Schema(description = "Уникальный идентификатор")
-    private Long id;
+    private String id;
 
     @Column(name = "first_name", length = 50)
     @Schema(description = "Имя")
@@ -84,7 +84,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(type.name()));
+        return List.of(new SimpleGrantedAuthority("ADMIN"));
     }
 
     @Override

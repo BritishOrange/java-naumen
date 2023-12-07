@@ -11,7 +11,7 @@ import com.develop.internetshop.entities.Tag.TagRepository;
 */
 @RestController
 @RequestMapping(path = "api/v1/tag")
-public class TagController extends BaseApiController<Tag, Long> {
+public class TagController extends BaseApiController<Tag, String> {
     public TagController(TagRepository tagRepository) {
         super(tagRepository);
     }

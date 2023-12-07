@@ -31,8 +31,8 @@ import lombok.NoArgsConstructor;
 
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

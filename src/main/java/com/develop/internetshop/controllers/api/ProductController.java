@@ -11,7 +11,7 @@ import com.develop.internetshop.entities.Product.ProductRepository;
  */
 @RestController
 @RequestMapping(path = "api/v1/products")
-public class ProductController extends BaseApiController<Product, Long> {
+public class ProductController extends BaseApiController<Product, String> {
     public ProductController(ProductRepository productRepository) {
         super(productRepository);
     }

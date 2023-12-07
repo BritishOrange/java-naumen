@@ -11,7 +11,7 @@ import com.develop.internetshop.entities.Cart.CartRepository;
 */
 @RestController
 @RequestMapping(path = "api/v1/cart")
-public class CartController extends BaseApiController<Cart, Long> {
+public class CartController extends BaseApiController<Cart, String> {
     public CartController(CartRepository cartRepository) {
         super(cartRepository);
     }

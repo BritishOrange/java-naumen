@@ -1,5 +1,9 @@
 package com.develop.internetshop.entities.User;
 
+/**
+ * UserType
+ */
 public enum UserType {
-    ADMIN, USER, WORKER
+    USER, ADMIN
 }
+

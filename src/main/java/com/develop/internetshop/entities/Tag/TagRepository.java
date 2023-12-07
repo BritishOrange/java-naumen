@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * TagRepository
  */
 @Repository
-public interface TagRepository extends JpaRepository<Tag, Long> {
+public interface TagRepository extends JpaRepository<Tag, String> {
 }

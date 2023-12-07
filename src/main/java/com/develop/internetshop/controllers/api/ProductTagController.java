@@ -3,9 +3,9 @@ package com.develop.internetshop.controllers.api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.develop.internetshop.entities.ProductTag.ProductTag;
-import com.develop.internetshop.entities.ProductTag.ProductTagId;
-import com.develop.internetshop.entities.ProductTag.ProductTagRepository;
+import com.develop.internetshop.entities.Product.ProductTag.ProductTag;
+import com.develop.internetshop.entities.Product.ProductTag.ProductTagId;
+import com.develop.internetshop.entities.Product.ProductTag.ProductTagRepository;
 
 /**
 * ProductTagController

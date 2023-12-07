@@ -11,7 +11,7 @@ import com.develop.internetshop.entities.Review.ReviewRepository;
 */
 @RestController
 @RequestMapping(path = "api/v1/review")
-public class ReviewController extends BaseApiController<Review, Long> {
+public class ReviewController extends BaseApiController<Review, String> {
     public ReviewController(ReviewRepository reviewRepository) {
         super(reviewRepository);
     }

@@ -1,4 +1,4 @@
-package com.develop.internetshop.entities.Cart;
+package com.develop.internetshop.entities.Order.OrderItem;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -6,7 +6,8 @@ import jakarta.persistence.Table;
 
 import java.util.Date;
 
-import com.develop.internetshop.entities.User.User;
+import com.develop.internetshop.entities.Order.Order;
+import com.develop.internetshop.entities.Product.Product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -20,33 +21,37 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Cart
+ * OrderItem
  */
 @Entity
-@Table(name = "cart_table")
+@Table(name = "order_item_table")
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Cart {
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "product_id")
+    private Product product;
 
-    @Column(name = "session_id", length = 100)
-    private String sessionId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    @Column(name = "token", length = 100)
-    private String Token;
+    @Column(name = "sku", nullable = false)
+    private String sku;
 
-    @Column(name = "status")
-    private CartStatus status;
+    @Column(name = "price", scale = 2)
+    private float price;
+
+    @Column(name = "discount", scale = 2)
+    private float discount;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -54,6 +59,6 @@ public class Cart {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    @Column(name = "content")
-    private String content;
+    @Column(name = "content", length = 500)
+    private Date content;
 }

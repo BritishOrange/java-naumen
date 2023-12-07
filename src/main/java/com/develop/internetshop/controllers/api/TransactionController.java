@@ -11,7 +11,7 @@ import com.develop.internetshop.entities.Transaction.TransactionRepository;
 */
 @RestController
 @RequestMapping(path = "api/v1/transaction")
-public class TransactionController extends BaseApiController<Transaction, Long> {
+public class TransactionController extends BaseApiController<Transaction, String> {
     public TransactionController(TransactionRepository transactionRepository) {
         super(transactionRepository);
     }

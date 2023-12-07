@@ -3,9 +3,9 @@ package com.develop.internetshop.controllers.api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.develop.internetshop.entities.ProductCategory.ProductCategory;
-import com.develop.internetshop.entities.ProductCategory.ProductCategoryId;
-import com.develop.internetshop.entities.ProductCategory.ProductCategoryRepository;
+import com.develop.internetshop.entities.Product.ProductCategory.ProductCategory;
+import com.develop.internetshop.entities.Product.ProductCategory.ProductCategoryId;
+import com.develop.internetshop.entities.Product.ProductCategory.ProductCategoryRepository;
 
 /**
 * ProductCategoryController

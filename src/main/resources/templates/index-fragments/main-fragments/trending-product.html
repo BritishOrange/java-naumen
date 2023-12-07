@@ -13,13 +13,13 @@
                 <div class="card-product__img">
                   <img class="card-img" th:src="${product.photoUrl}" alt="">
                   <ul class="card-product__imgOverlay">
-                    <li><button><i class="ti-search"></i></button></li>
+                    <li><a th:href="@{'/product/' + ${product.id}}"><button><i class="ti-search"></i></button></a></li>
                     <li><button><i class="ti-shopping-cart"></i></button></li>
                   </ul>
                 </div>
                 <div class="card-body">
                   <p th:text="${product.category.title}"></p>
-                  <h4 class="card-product__title"><a href="./single-product.html" th:text="${product.title}"></a></h4>
+                  <h4 class="card-product__title"><a th:href="@{'/product/' + ${product.id}}" th:text="${product.title}"></a></h4>
                   <p class="card-product__price" th:text="${product.price}">$</p>
                 </div>
               </div>

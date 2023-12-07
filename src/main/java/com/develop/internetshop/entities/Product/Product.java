@@ -35,9 +35,9 @@ import lombok.NoArgsConstructor;
 @Schema(description = "Сущность товара")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Schema(description = "Уникальный идентификатор")
-    private Long id;
+    private String id;
 
     @Column(name = "title", length = 75, nullable = false)
     @Schema(description = "Название товара")

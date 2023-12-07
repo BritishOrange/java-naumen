@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * CartRepository
  */
-public interface CartRepository extends CrudRepository<Cart, Long> {
+public interface CartRepository extends CrudRepository<Cart, String> {
 }

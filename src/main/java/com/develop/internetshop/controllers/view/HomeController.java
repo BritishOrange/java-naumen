@@ -58,8 +58,7 @@ public class HomeController {
 
     @GetMapping(path = "/product/{id}")
     public String singleProduct(@PathVariable String id, Model model) {
-        long longId = Long.parseLong(id);
-        Product product = productRepository.findById(longId).get();
+        Product product = productRepository.findById(id).get();
         model.addAttribute("product", product);
         return "product";
     }
