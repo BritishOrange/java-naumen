@@ -37,25 +37,10 @@ public class Category {
     @Schema(description = "Название категории")
     private String title;
 
-    @Column(name = "content")
-    @Schema(description = "Описание категории")
-    private String content;
-
-    @Column(name = "slug", length = 100)
-    @Schema(description = "Название эндпоинта категории")
-    private String slug;
-
-    @Column(name = "meta_title", length = 100)
-    @Schema(description = "Мета заголовок: как отображается ссылка на страничку с категорией при поиске")
-    private String metaTitle;
-
     public Category() { }
 
-    public Category(Long parentId, String title, String content, String slug, String metaTitle) {
+    public Category(Long parentId, String title) {
         this.parentId = parentId;
         this.title = title;
-        this.content = content;
-        this.slug = slug;
-        this.metaTitle = metaTitle;
     }
 }

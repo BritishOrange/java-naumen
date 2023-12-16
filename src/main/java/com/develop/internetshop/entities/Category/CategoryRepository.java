@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface CategoryRepository extends JpaRepository<Category, String> {
     @Query(
-        value = "SELECT * FROM user_table ut WHERE ut.title = ?1", 
+        value = "SELECT * FROM category_table ut WHERE ut.title = ?1", 
         nativeQuery = true
     )
     public Category findCategoryByTitle(String title);

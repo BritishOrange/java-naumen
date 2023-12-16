@@ -21,6 +21,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.servlet.ServletContext;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -58,59 +60,42 @@ public class LoadMockData implements CommandLineRunner {
         System.out.println("Adding mocks...");
 
         loadUsers();
-        // loadCategories();
-        // loadProducts();
+        loadCategories();
+        loadProducts();
         // loadTags();
         // loadReviews();
     }
 
+    private void setPasswordHash(List<User> users) {
+        for (User user : users) {
+            user.setPasswordHash(passwordEncoder.encode(user.getPassword()));
+        }
+    }
+
     private void loadUsers() throws StreamReadException, DatabindException, IOException {
-        File file = new File("src\\main\\resources\\mocks\\users.json");
+        File file = new File("src/main/resources/mocks/users.json");
         List<User> users = objectMapper.readValue(file, new TypeReference<>(){});
+        setPasswordHash(users);
         userRepository.saveAll(users);
     }
 
-    // private void loadCategories() throws IOException, CsvException {
-    //     List<String[]> rawData = readData("src\\main\\resources\\mocks\\categories.csv");
+    private void loadCategories() throws StreamReadException, DatabindException, IOException {
+        File file = new File("src/main/resources/mocks/categories.json");
+        List<Category> categories = objectMapper.readValue(file, new TypeReference<>(){});
+        categoryRepository.saveAll(categories);
+    }
 
-    //     List<Category> categories = new ArrayList<Category>();
-    //     for (int i = 1; i < rawData.size(); i++) {
-    //         String[] row = rawData.get(i);
-    //         categories.add(new Category(null, row[0], row[1], row[2], row[2]));
-    //     }
+    private void loadProducts() throws StreamReadException, DatabindException, IOException {
+        File file = new File("src/main/resources/mocks/products-notebooks.json");
+        List<Product> products = objectMapper.readValue(file, new TypeReference<>(){});
+        Category notebookCategory = categoryRepository.findCategoryByTitle("Ноутбуки");
 
-    //     categoryRepository.saveAll(categories);
-    // }
+        for (Product product : products) {
+            product.setCategory(notebookCategory);
+        }
 
-    // private void loadProducts() throws IOException, CsvException {
-    //     List<String[]> rawData = readData("src\\main\\resources\\mocks\\products.csv");
-    //     long totalCategories = categoryRepository.count();
-    //     Random random = new Random();
-    //     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-
-    //     List<Product> products = new ArrayList<Product>();
-    //     List<Category> categories = new ArrayList<Category>();
-
-    //     categoryRepository.findAll().forEach(c -> categories.add(c));
-    //     for (int i = 1; i < rawData.size(); i++) {
-
-    //         String[] row = rawData.get(i);
-    //         int randomIndex = random.nextInt((int) totalCategories);
-    //         Category curCategory = categories.get(randomIndex);
-
-    //         products.add(new Product(
-    //             null, row[0], row[3], row[4], row[1], "https://loremflickr.com/263/280?random=" + randomIndex,
-    //             curCategory, row[2], Float.parseFloat(row[10]), Float.parseFloat(row[11]),
-    //             Date.from(LocalDateTime.parse(row[9], formatter).atZone(ZoneId.systemDefault()).toInstant()),
-    //             Date.from(LocalDateTime.parse(row[5], formatter).atZone(ZoneId.systemDefault()).toInstant()),
-    //             Date.from(LocalDateTime.parse(row[7], formatter).atZone(ZoneId.systemDefault()).toInstant()),
-    //             Date.from(LocalDateTime.parse(row[6], formatter).atZone(ZoneId.systemDefault()).toInstant()),
-    //             Date.from(LocalDateTime.parse(row[8], formatter).atZone(ZoneId.systemDefault()).toInstant())
-    //         ));
-    //     }
-
-    //     productRepository.saveAll(products);
-    // }
+        productRepository.saveAll(products);
+    }
 
     // private void loadTags() throws IOException, CsvException {
     //     List<String[]> rawData = readData("src\\main\\resources\\mocks\\tags.csv");

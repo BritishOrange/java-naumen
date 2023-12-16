@@ -3,6 +3,7 @@ package com.develop.internetshop.entities.Product;
 import java.util.Date;
 
 import com.develop.internetshop.entities.Category.Category;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
@@ -51,9 +52,13 @@ public class Product {
     @Schema(description = "Название эндпоинта странички с товаром")
     private String slug;
 
-    @Column(name = "description", length = 1200)
+    @Column(name = "description", length = 10000)
     @Schema(description = "Описание товара")
-    private String descriprion;
+    private String description;
+
+    @JsonProperty("specifications")
+    @Schema(description = "Характеристики товара")
+    private String specifications;
 
     @Column(name = "photo_url")
     @Schema(description = "ссылка на изображение")
