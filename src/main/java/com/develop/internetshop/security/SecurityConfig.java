@@ -16,7 +16,7 @@ import com.develop.internetshop.entities.User.UserType;
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig{
+public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -27,26 +27,25 @@ public class SecurityConfig{
         // анонимный пользователь
         http
             .csrf(Customizer.withDefaults())
-            .authorizeHttpRequests((authorize) ->
-                authorize
-                    .requestMatchers("/", "/register", "/category", "/product/**").anonymous()
-                    .requestMatchers("/css/**").anonymous()
-                    .requestMatchers("/scss/**").anonymous()
-                    .requestMatchers("/js/**").anonymous()
-                    .requestMatchers("/vendors/**").anonymous()
-                    .requestMatchers("/img/**").anonymous()
-                    .requestMatchers("/cart", "/confirmation").hasRole(UserType.USER.name())//.anyRequest().authenticated()
+            .authorizeHttpRequests((authorize) -> authorize
+                    .requestMatchers("/", "/register", "/category", "/product/**").permitAll()
+                    .requestMatchers("/css/**").permitAll()
+                    .requestMatchers("/scss/**").permitAll()
+                    .requestMatchers("/js/**").permitAll()
+                    .requestMatchers("/vendors/**").permitAll()
+                    .requestMatchers("/img/**").permitAll()
+                    .requestMatchers("/cart").hasRole(UserType.USER.name())
+                    .requestMatchers("/confirmation").hasRole(UserType.USER.name())// .anyRequest().authenticated()
             ).formLogin(
-                form -> form
-                    .loginPage("/login")
-                    .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/")
-                    .permitAll()
-            ).logout(
-                logout -> logout
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .permitAll()
-            );
+                    form -> form
+                            .loginPage("/login")
+                            .loginProcessingUrl("/login")
+                            .defaultSuccessUrl("/")
+                            .permitAll())
+            .logout(
+                    logout -> logout
+                            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                            .permitAll());
         return http.build();
     }
 

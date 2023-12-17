@@ -47,7 +47,7 @@ public class Review {
     private String content;
 
     @Column(name = "rating")
-    private byte rating;
+    private int rating;
 
     @Column(name = "published_at", nullable = false)
     private Date publishedAt;

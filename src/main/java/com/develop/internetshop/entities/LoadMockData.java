@@ -13,29 +13,19 @@ import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpe
 import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecificationRepository;
 import com.develop.internetshop.entities.Review.Review;
 import com.develop.internetshop.entities.Review.ReviewRepository;
-import com.develop.internetshop.entities.Tag.Tag;
 import com.develop.internetshop.entities.Tag.TagRepository;
 import com.develop.internetshop.entities.User.User;
 import com.develop.internetshop.entities.User.UserRepository;
-import com.develop.internetshop.entities.User.UserType;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.servlet.ServletContext;
-
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
+
 
 /**
  * LoadMockData
@@ -74,7 +64,7 @@ public class LoadMockData implements CommandLineRunner {
 
     private void setPasswordHash(List<User> users) {
         for (User user : users) {
-            user.setPasswordHash(passwordEncoder.encode(user.getPassword()));
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
     }
 
@@ -99,14 +89,14 @@ public class LoadMockData implements CommandLineRunner {
         for (Product product : products) {
             product.setCategory(notebookCategory);
             List<ProductSpecification> specifications = product.getSpecifications();
-            List<Review> reviews = product.getReview();
+            List<Review> reviews = product.getReviews();
 
             for (ProductSpecification productSpecification : specifications) {
                 productSpecification.setProduct(product);
             }
 
             User user = userRepository.findUserByEmail("alisa.dolgopolova@example.ru");
-
+            
             for (Review review : reviews) {
                 review.setProduct(product);
                 review.setUser(user);
@@ -114,7 +104,8 @@ public class LoadMockData implements CommandLineRunner {
 
             productRepository.save(product);
             productSpecificationRepository.saveAll(specifications);
-            reviewRepository.saveAll(reviews);
+            if (reviews.size() > 0)
+                reviewRepository.saveAll(reviews);
         }
     }
 

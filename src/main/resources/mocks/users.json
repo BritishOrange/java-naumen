@@ -7,7 +7,6 @@
         "mobile": "+71234567890",
         "email": "alisa.dolgopolova@example.ru",
         "password": "987",
-        "passwordHash": "5f4dcc3b5aa765d61d8327deb882cf99",
         "type": "ADMIN",
         "registeredAt": "2022-01-02T00:00:00Z",
         "lastLogin": "2022-01-02T00:00:00Z"
@@ -20,7 +19,6 @@
         "mobile": "+79876543210",
         "email": "bob.sidorov@example.ru",
         "password": "123",
-        "passwordHash": "5f4dcc3b5aa765d61d8327deb882cf99",
         "type": "ADMIN",
         "registeredAt": "2022-01-03T00:00:00Z",
         "lastLogin": "2022-01-03T00:00:00Z"
@@ -33,7 +31,6 @@
         "mobile": "+79112345678",
         "email": "vasya.pupkin@example.ru",
         "password": "456",
-        "passwordHash": "315d03e0b0d1f7c71e6a3827a38348d3",
         "type": "USER",
         "registeredAt": "2022-01-04T00:00:00Z",
         "lastLogin": "2022-01-04T00:00:00Z"
@@ -46,7 +43,6 @@
         "mobile": "+79223344556",
         "email": "grisha.grigoriev@example.ru",
         "password": "789",
-        "passwordHash": "e10adc3949ba5981ab56e38585c97e5a45a8f13a",
         "type": "USER",
         "registeredAt": "2022-01-05T00:00:00Z",
         "lastLogin": "2022-01-05T00:00:00Z"
@@ -59,7 +55,6 @@
         "mobile": "+79261123456",
         "email": "dima_kuz@mail.ru",
         "password": "zxcvbn",
-        "passwordHash": "zxcvbn",
         "type": "USER",
         "registeredAt": "2022-01-05T00:00:00Z",
         "lastLogin": "2022-01-05T00:00:00Z"
@@ -72,7 +67,6 @@
         "mobile": "+79153456789",
         "email": "anna_leo@mail.ru",
         "password": "1qaz2wsx",
-        "passwordHash": "1qaz2wsx",
         "type": "USER",
         "registeredAt": "2022-01-05T00:00:00Z",
         "lastLogin": "2022-01-05T00:00:00Z"
@@ -85,7 +79,6 @@
         "mobile": "+79054567890",
         "email": "ivan_ivan@mail.ru",
         "password": "asdfgh",
-        "passwordHash": "asdfgh",
         "type": "USER",
         "registeredAt": "2022-01-05T00:00:00Z",
         "lastLogin": "2022-01-05T00:00:00Z"
@@ -98,7 +91,6 @@
         "mobile": "+1234567890",
         "email": "john.doe@example.com",
         "password": "password123",
-        "passwordHash": "5f4dcc3b5aa765d61d8327deb882cf99",
         "type": "USER",
         "registeredAt": "2022-01-01T00:00:00Z",
         "lastLogin": "2022-01-01T00:00:00Z"

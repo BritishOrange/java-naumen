@@ -70,7 +70,7 @@ public class Product {
     @OneToMany(fetch = FetchType.LAZY)
     @Schema(description = "Отзывы о товаре")
     @Transient
-    private List<Review> review;
+    private List<Review> reviews;
 
     @Column(name = "photo_url")
     @Schema(description = "ссылка на изображение")

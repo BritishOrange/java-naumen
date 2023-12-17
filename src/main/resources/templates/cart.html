@@ -10,7 +10,6 @@
     <header th:replace="~{common-fragments/header :: header}"></header>
     <section th:replace="~{cart-fragments/banner :: banner}"></section>
 
-    <!--================Cart Area =================-->
     <section class="cart_area">
         <div class="container">
             <div class="cart_inner">
@@ -21,99 +20,10 @@
                                 <th scope="col">Товар</th>
                                 <th scope="col">Цена</th>
                                 <th scope="col">Количество</th>
-                                <th scope="col">Итого</th>
+                                <th scope="col">Сумма</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart/cart1.png" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
-                                            title="Quantity:" class="input-text qty">
-                                        <button
-                                            onclick=
-                                            "
-                                                var result = document.getElementById('sst'); 
-                                                var sst = result.value; 
-                                                if( !isNaN( sst )) result.value++;
-                                                return false;
-                                            "
-                                            class="increase items-count" type="button"><i
-                                                class="lnr lnr-chevron-up"></i></button>
-                                        <button
-                                            onclick=
-                                            "
-                                                var result = document.getElementById('sst'); 
-                                                var sst = result.value; 
-                                                if( !isNaN( sst ) && sst > 0 ) result.value--;
-                                                return false;
-                                            "
-                                            class="reduced items-count" type="button"><i
-                                                class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart/cart2.png" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
-                                            title="Quantity:" class="input-text qty">
-                                        <button
-                                            onclick=
-                                            "
-                                                var result = document.getElementById('sst'); 
-                                                var sst = result.value; 
-                                                if( !isNaN( sst )) result.value++;
-                                                return false;
-                                            "
-                                            class="increase items-count" type="button"><i
-                                                class="lnr lnr-chevron-up"></i></button>
-                                        <button
-                                            onclick=
-                                            "
-                                                var result = document.getElementById('sst'); 
-                                                var sst = result.value; 
-                                                if( !isNaN( sst ) && sst > 0 ) 
-                                                result.value--;
-                                                return false;
-                                            "
-                                            class="reduced items-count" type="button"><i
-                                                class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <div class="media">
@@ -160,48 +70,28 @@
                             </tr>
                             <tr class="bottom_button">
                                 <td>
-                                    <a class="button" href="#">Update Cart</a>
+                                    <a class="button" href="#">Обновить</a>
                                 </td>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
+                                <td></td><td></td>
                             </tr>
                             <tr>
+                                <td></td><td></td>
                                 <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-                                    <h5>Subtotal</h5>
+                                    <h5>Итого</h5>
                                 </td>
                                 <td>
                                     <h5>$2160.00</h5>
                                 </td>
                             </tr>
                             <tr class="shipping_area">
-                                <td class="d-none d-md-block">
-
-                                </td>
+                                <td class="d-none d-md-block"></td>
                             </tr>
                             <tr class="out_button_area">
-                                <td class="d-none-l">
-
-                                </td>
-                                <td class="">
-
-                                </td>
-                                <td>
-
-                                </td>
+                                <td class="d-none-l"> </td><td class=""></td><td></td>
                                 <td>
                                     <div class="checkout_btn_inner d-flex align-items-center">
-                                        <a class="gray_btn" href="#">Continue Shopping</a>
-                                        <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+                                        <a class="gray_btn" href="#">Вернуться к покупкам</a>
+                                        <a class="primary-btn ml-2" href="#">Перейти к оплате</a>
                                     </div>
                                 </td>
                             </tr>
@@ -211,7 +101,6 @@
             </div>
         </div>
     </section>
-    <!--================End Cart Area =================-->
     <footer th:replace="~{common-fragments/footer :: footer}"></footer>
     <section th:replace="~{common-fragments/scripts :: scripts}" th:remove="tag"></section>
 </body>

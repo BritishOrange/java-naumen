@@ -61,15 +61,11 @@ public class User implements UserDetails {
     @Schema(description = "Email")
     private String email;
 
-    @Column(name = "password", length = 32, nullable = false)
+    @Column(name = "password", length = 1000, nullable = false)
     @Schema(description = "Пароль")
     private String password;
 
-    @Column(name = "password_hash", length = 200, nullable = false)
-    @Schema(description = "Хеш пароля")
-    private String passwordHash;
-
-    @Column(name = "user_type")
+    @Column(name = "user_type", nullable = false)
     @Enumerated(EnumType.STRING)
     @Schema(description = "Тип пользователя (админ, обычный пользователь, работник)")
     private UserType type;
@@ -84,12 +80,12 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ADMIN"));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + type.name()));
     }
 
     @Override
     public String getPassword() {
-        return passwordHash;
+        return password;
     }
 
     @Override

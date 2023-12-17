@@ -6,53 +6,32 @@
                 <div class="col-6">
                     <div class="box_total">
                         <h5>Всего</h5>
-                        <h4>4.0</h4>
-                        <h6>(03 Отзыва)</h6>
+                        <h4 th:text="${averageMark}">оценка</h4>
+                        <h6>(всего отзывов: <span th:text="${reviewsCount}"></span> )</h6>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="rating_list">
-                        <h3>На основе 3</h3>
+                        <h3>На основе <span th:text="${reviewsCount}"></span></h3>
                         <ul class="list">
-                            <li><a href="#">5 Звёзд <i class="fa fa-star"></i><i
-                                        class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                        class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                            <li><a href="#">4 Звёзд <i class="fa fa-star"></i><i
-                                        class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                        class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                            <li><a href="#">3 Звёзд <i class="fa fa-star"></i><i
-                                        class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                        class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                            <li><a href="#">2 Звёзд <i class="fa fa-star"></i><i
-                                        class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                        class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                            <li><a href="#">1 Звёзд <i class="fa fa-star"></i><i
-                                        class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                        class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+                            <li><a href="#"><span th:text="${marksDistribution[4]} + '  '">0 </span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><span th:text="${marksDistribution[3]} + '  '">0 </span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><span th:text="${marksDistribution[2]} + '  '">0 </span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><span th:text="${marksDistribution[1]} + '  '">0 </span><i class="fa fa-star"></i><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><span th:text="${marksDistribution[0]} + '  '">0 </span><i class="fa fa-star"></i> </a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="review_list">
-                <div class="review_item">
+                <div th:each="review, iterStat : ${reviews}" th:if="${iterStat.index lt 5}" class="review_item">
                     <div class="media">
-                        <div class="d-flex">
-                            <img th:src="@{/img/product/review-1.png}" alt="">
-                        </div>
-                        <div class="media-body">
-                            <h4>Blake Ruiz</h4>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                        <div class="media-body" th:with="end=${review.getRating()}">
+                            <h4 th:text="${review.user.firstName}">username</h4>
+                            <i th:each="i : ${#numbers.sequence(1, end)} " class="fa fa-star"></i>
                         </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea
-                        commodo</p>
+                    <p th:text="${review.content}">review text</p>
                 </div>
             </div>
         </div>
