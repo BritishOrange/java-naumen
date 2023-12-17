@@ -9,6 +9,8 @@ import com.develop.internetshop.entities.Category.Category;
 import com.develop.internetshop.entities.Category.CategoryRepository;
 import com.develop.internetshop.entities.Product.Product;
 import com.develop.internetshop.entities.Product.ProductRepository;
+import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecification;
+import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecificationRepository;
 import com.develop.internetshop.entities.Review.Review;
 import com.develop.internetshop.entities.Review.ReviewRepository;
 import com.develop.internetshop.entities.Tag.Tag;
@@ -19,6 +21,7 @@ import com.develop.internetshop.entities.User.UserType;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletContext;
@@ -47,6 +50,8 @@ public class LoadMockData implements CommandLineRunner {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
+    private ProductSpecificationRepository productSpecificationRepository;
+    @Autowired
     private ReviewRepository reviewRepository;
     @Autowired
     private TagRepository tagRepository;
@@ -58,6 +63,7 @@ public class LoadMockData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Adding mocks...");
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         loadUsers();
         loadCategories();
@@ -86,15 +92,30 @@ public class LoadMockData implements CommandLineRunner {
     }
 
     private void loadProducts() throws StreamReadException, DatabindException, IOException {
-        File file = new File("src/main/resources/mocks/products-notebooks.json");
-        List<Product> products = objectMapper.readValue(file, new TypeReference<>(){});
+        File file = new File("src/main/resources/mocks/products/notebooks.json");
+        List<Product> products = objectMapper.readValue(file, new TypeReference<List<Product>>(){});
         Category notebookCategory = categoryRepository.findCategoryByTitle("Ноутбуки");
 
         for (Product product : products) {
             product.setCategory(notebookCategory);
-        }
+            List<ProductSpecification> specifications = product.getSpecifications();
+            List<Review> reviews = product.getReview();
 
-        productRepository.saveAll(products);
+            for (ProductSpecification productSpecification : specifications) {
+                productSpecification.setProduct(product);
+            }
+
+            User user = userRepository.findUserByEmail("alisa.dolgopolova@example.ru");
+
+            for (Review review : reviews) {
+                review.setProduct(product);
+                review.setUser(user);
+            }
+
+            productRepository.save(product);
+            productSpecificationRepository.saveAll(specifications);
+            reviewRepository.saveAll(reviews);
+        }
     }
 
     // private void loadTags() throws IOException, CsvException {

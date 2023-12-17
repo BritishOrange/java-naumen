@@ -4,7 +4,7 @@
     <section class="section-margin mt-0" th:fragment="carousel">
         <div class="owl-carousel owl-theme hero-carousel">
           <div th:each="product, iterStat : ${products}" th:if="${iterStat.index lt 3}" class="hero-carousel__slide">
-            <img th:src="${product.photoUrl}" alt="" class="img-fluid">
+            <img th:src="@{/img/products/} + ${product.photoUrl}" alt="" class="img-fluid">
             <a th:href="@{'/product/' + ${product.id}}" class="hero-carousel__slideOverlay">
               <h3 th:text="${product.category.title}"></h3>
               <p th:text="${product.title}"></p>

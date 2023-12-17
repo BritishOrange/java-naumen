@@ -1,9 +1,13 @@
 package com.develop.internetshop.entities.Product;
 
 import java.util.Date;
+import java.util.List;
+
+// import org.hibernate.mapping.List;
 
 import com.develop.internetshop.entities.Category.Category;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecification;
+import com.develop.internetshop.entities.Review.Review;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
@@ -15,7 +19,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -56,9 +62,15 @@ public class Product {
     @Schema(description = "Описание товара")
     private String description;
 
-    @JsonProperty("specifications")
+    @OneToMany(fetch = FetchType.LAZY)
     @Schema(description = "Характеристики товара")
-    private String specifications;
+    @Transient
+    private List<ProductSpecification> specifications;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @Schema(description = "Отзывы о товаре")
+    @Transient
+    private List<Review> review;
 
     @Column(name = "photo_url")
     @Schema(description = "ссылка на изображение")

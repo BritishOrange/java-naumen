@@ -7,16 +7,16 @@
             <div th:each="product, iterStat : ${products}" th:if="${iterStat.index lt 12}" class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                     <div class="card-product__img">
-                        <img class="card-img" th:src="${product.photoUrl}" alt="">
+                        <img class="card-img" th:src="@{/img/products/} + ${product.photoUrl}" alt="">
                         <ul class="card-product__imgOverlay">
-                            <li><button><a th:href="@{'/product/id?' + ${product.id}}"><i class="ti-search"></i></a></button></li>
+                            <li><a th:href="@{'/product/' + ${product.id}}"><button><i class="ti-search"></i></button></a></li>
                             <li><button><i class="ti-shopping-cart"></i></button></li>
                         </ul>
                     </div>
                     <div class="card-body">
                         <p th:text="${product.category.title}"></p>
                         <h4 class="card-product__title" th:text="${product.title}"></h4>
-                        <p class="card-product__price" th:text="${product.price}"></p>
+                        <p class="card-product__price"><span th:text="${product.price}">00.00</span> ₽</p>
                     </div>
                 </div>
             </div>

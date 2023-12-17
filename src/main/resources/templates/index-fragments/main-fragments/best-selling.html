@@ -11,7 +11,7 @@
       <div class="owl-carousel owl-theme" id="bestSellerCarousel">
         <div th:each="product, iterStat : ${products}" th:if="${iterStat.index lt 5}" class="card text-center card-product">
           <div class="card-product__img">
-            <img class="img-fluid" th:src="${product.photoUrl}" alt="">
+            <img class="img-fluid" th:src="@{/img/products/} + ${product.photoUrl}" alt="">
             <ul class="card-product__imgOverlay">
               <li><a th:href="@{'/product/' + ${product.id}}"><button><i class="ti-search"></i></button></a></li>
               <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -20,7 +20,7 @@
           <div class="card-body">
             <p th:text="${product.category.title}"></p>
             <h4 class="card-product__title"><a th:href="@{'/product/' + ${product.id}}" th:text="${product.title}"></a></h4>
-            <p class="card-product__price" th:text="${product.price}"></p>
+            <p class="card-product__price"><span th:text="${product.price}">00.00</span> ₽</p>
           </div>
         </div>
       </div>

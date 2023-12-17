@@ -2,6 +2,7 @@ package com.develop.internetshop.controllers.view;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,8 @@ import com.develop.internetshop.entities.Category.Category;
 import com.develop.internetshop.entities.Category.CategoryRepository;
 import com.develop.internetshop.entities.Product.Product;
 import com.develop.internetshop.entities.Product.ProductRepository;
+import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecification;
+import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecificationRepository;
 import com.develop.internetshop.entities.Tag.Tag;
 import com.develop.internetshop.entities.Tag.TagRepository;
 
@@ -19,19 +22,14 @@ import com.develop.internetshop.entities.Tag.TagRepository;
  */
 @Controller
 public class HomeController {
+    @Autowired
     private ProductRepository productRepository;
+    @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private ProductSpecificationRepository productSpecificationRepository;
+    @Autowired
     private TagRepository tagRepository;
-
-    public HomeController(
-        ProductRepository productRepository, 
-        CategoryRepository categoryRepository,
-        TagRepository tagRepository
-    ) {
-        this.productRepository = productRepository;
-        this.categoryRepository = categoryRepository;
-        this.tagRepository = tagRepository;
-    }
 
     @GetMapping(path = "/")
     public String index(Model model) {
@@ -58,8 +56,10 @@ public class HomeController {
 
     @GetMapping(path = "/product/{id}")
     public String singleProduct(@PathVariable String id, Model model) {
-        // Product product = productRepository.findById(id).get();
-        // model.addAttribute("product", product);
+        Product product = productRepository.findById(id).get();
+        List<ProductSpecification> specifications = productSpecificationRepository.findProductSpecificationByProduct(product);
+        model.addAttribute("product", product);
+        model.addAttribute("specifications", specifications);
         return "product";
     }
 }

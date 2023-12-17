@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="product-image" class="product_image_area">
+            <div class="container">
+                <div class="row s_product_inner">
+                    <div class="col-lg-6">
+                        <div class="owl-carousel owl-theme s_Product_carousel">
+                            <div class="single-prd-item">
+                                <img class="img-fluid" th:src="@{/img/products/} + ${product.photoUrl}" alt="">
+                            </div>
+                            <div class="single-prd-item">
+                                <img class="img-fluid" th:src="@{/img/products/} + ${product.photoUrl}" alt="">
+                            </div>
+                            <div class="single-prd-item">
+                                <img class="img-fluid" th:src="@{/img/products/} + ${product.photoUrl}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1">
+                        <div class="s_product_text">
+                            <h3 th:text="${product.title}">Product title</h3>
+                            <h2><span th:text="${product.price}"></span> ₽</h2>
+                            <ul class="list">
+                                <li><a class="active" th:text="${product.category.title}" href="#"><span> </span></a></li>
+                                <li><a href="#"><span>Наличие</span>: В продаже</a></li>
+                            </ul>
+                            <div class="product_count">
+                                <label for="qty">Количество:</label>
+                                <!-- <button
+                                    onclick=
+                                    "
+                                        var result = document.getElementById('sst'); 
+                                        var sst = result.value; 
+                                        if( !isNaN( sst )) result.value++;
+                                        return false;
+                                    "
+                                    class="increase items-count" type="button"><i class="ti-angle-left"></i></button> -->
+                                <input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:"
+                                    class="input-text qty">
+                                <!-- <button
+                                    onclick=
+                                    "
+                                        var result = document.getElementById('sst'); 
+                                        var sst = result.value; 
+                                        if( !isNaN( sst ) && sst > 0) result.value--;
+                                        return false;
+                                    "
+                                    class="reduced items-count" type="button"><i class="ti-angle-right"></i></button> -->
+                                <a class="button primary-btn" href="#">В корзину</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
