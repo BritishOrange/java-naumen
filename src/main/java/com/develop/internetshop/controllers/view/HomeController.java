@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.develop.internetshop.services.ProductService;
 
@@ -25,6 +24,8 @@ public class HomeController {
 
     @GetMapping(path = "/category")
     public String category(Model model) {
+        // System.out.println(lowerValue);
+        // System.out.println(upperValue);
         productService.setCategoryAttributes(model);
         return "category";
     }
@@ -37,11 +38,5 @@ public class HomeController {
     @GetMapping(path = "/confirmation")
     public String confirmation() {
         return "confirmation";
-    }
-
-    @GetMapping(path = "/product/{id}")
-    public String singleProduct(@PathVariable String id, Model model) {
-        productService.setSingleProductAttributes(id, model);
-        return "product";
     }
 }

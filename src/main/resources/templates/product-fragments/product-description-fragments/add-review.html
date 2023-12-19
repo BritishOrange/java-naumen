@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <body>
-        <div th:fragment="add-review" class="col-lg-6">
+        <div th:if="${isAuthenticated}" th:fragment="add-review" class="col-lg-6">
             <div class="review_box">
                 <h4>Добавить отзыв</h4>
-                <p>Ваш рейтинг:</p>
-                <ul class="list">
-                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                </ul>
-                <p>Отлично</p>
-                <form action="#/" class="form-contact form-review mt-3">
+                
+                <form th:action="@{/product/{id}/add-review(id=${product.id})}" method="post" class="form-contact form-review mt-3">
+                    <div class="rating-area">
+                        <p>Ваш рейтинг:</p>
+                        <input type="radio" id="star-5" name="rating" value="5">
+                        <label for="star-5" title="Оценка «5»"></label>	
+                        <input type="radio" id="star-4" name="rating" value="4">
+                        <label for="star-4" title="Оценка «4»"></label>    
+                        <input type="radio" id="star-3" name="rating" value="3">
+                        <label for="star-3" title="Оценка «3»"></label>  
+                        <input type="radio" id="star-2" name="rating" value="2">
+                        <label for="star-2" title="Оценка «2»"></label>    
+                        <input type="radio" id="star-1" name="rating" value="1">
+                        <label for="star-1" title="Оценка «1»"></label>
+                    </div>
                     <div class="form-group">
                         <textarea class="form-control different-control w-100" name="textarea"
                             id="textarea" cols="30" rows="5" placeholder="Ваш отзыв"></textarea>

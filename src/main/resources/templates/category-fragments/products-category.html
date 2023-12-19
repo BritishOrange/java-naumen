@@ -7,34 +7,20 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-5">
                     <div class="sidebar-categories">
-                        <div class="head">Категории</div>
+                        <div class="head">Фильтры</div>
                         <ul class="main-categories">
                             <li class="common-filter">
                                 <ul>
                                     <li th:each="category, iterStat : ${categories}" th:if="${iterStat.index lt 10}"
                                         class="filter-list">
-                                        <input class="pixel-radio" type="radio" th:id="${category.id}" name="brand">
-                                        <label th:text="${category.title}"
-                                            th:for="${category.id}"><span>(29)</span></label>
+                                        <input th:attr="onchange=|setCategoryId('${category.id}')|" class="pixel-radio" type="radio" th:id="${category.id}" name="category">
+                                        <label th:text="${category.title}" th:for="${category.id}"></label>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <div class="sidebar-filter">
-                        <div class="top-filter-head">Фильтры</div>
-                        <div class="common-filter">
-                            <div class="head">Теги</div>
-                            <form action="#">
-                                <ul>
-                                    <li th:each="tag, iterStat : ${tags}" th:if="${iterStat.index lt 10}"
-                                        class="filter-list">
-                                        <input class="pixel-radio" type="radio" id="black" name="color">
-                                        <label th:text="${tag.title}" for="black"><span>(29)</span></label>
-                                    </li>
-                                </ul>
-                            </form>
-                        </div>
                         <div class="common-filter">
                             <div class="head">Цена</div>
                             <div class="price-range-area">
@@ -60,24 +46,19 @@
                                 <option value="3">По цене</option>
                             </select>
                         </div>
-                        <div class="sorting mr-auto">
-                            <select>
-                                <option value="1">Показать 12</option>
-                                <option value="2">Показать 24</option>
-                                <option value="3">Показать 36</option>
-                            </select>
-                        </div>
                         <div>
                             <div class="input-group filter-bar-search">
-                                <input type="text" placeholder="Искать">
+                                <input type="text" th:attr="onchange=|setSearchText()|" id="search-bar" placeholder="Искать">
                                 <div class="input-group-append">
                                     <button type="button"><i class="ti-search"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <section
-                        th:replace="~{category-fragments/products-category-fragments/products-row :: products-row}">
+                    <section th:fragment="products-row" class="lattest-product-area pb-40 category-list">
+                        <div class="row" id="products-list">
+
+                        </div>
                     </section>
                 </div>
             </div>

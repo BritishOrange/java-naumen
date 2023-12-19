@@ -8,6 +8,7 @@ import java.util.List;
 import com.develop.internetshop.entities.Category.Category;
 import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecification;
 import com.develop.internetshop.entities.Review.Review;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
@@ -40,6 +41,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Schema(description = "Сущность товара")
+
+// @JsonIgnoreProperties({ "specifications", "reviews",  })
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -76,7 +79,7 @@ public class Product {
     @Schema(description = "ссылка на изображение")
     private String photoUrl;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     @Schema(description = "Категория товара")
     private Category category;

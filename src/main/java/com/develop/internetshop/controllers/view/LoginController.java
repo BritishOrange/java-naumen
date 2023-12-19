@@ -21,7 +21,6 @@ public class LoginController {
         @RequestParam("name") String username,
         @RequestParam("password") String password
     ) {
-        System.out.println("username");
         return "redirect:/";
     }
 

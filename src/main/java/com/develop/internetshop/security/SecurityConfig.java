@@ -28,14 +28,18 @@ public class SecurityConfig {
         http
             .csrf(Customizer.withDefaults())
             .authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/", "/register", "/category", "/product/**").permitAll()
+                    .requestMatchers("/", "/register", "/category**", "/product/**").permitAll()
                     .requestMatchers("/css/**").permitAll()
                     .requestMatchers("/scss/**").permitAll()
                     .requestMatchers("/js/**").permitAll()
                     .requestMatchers("/vendors/**").permitAll()
                     .requestMatchers("/img/**").permitAll()
+                    .requestMatchers("/api/v1/**").permitAll()
+                    .requestMatchers("/swagger-ui/**").permitAll()
+                    .requestMatchers("/v3/**").permitAll()
+                    .requestMatchers("/swagger-ui.html").permitAll()
                     .requestMatchers("/cart").hasRole(UserType.USER.name())
-                    .requestMatchers("/confirmation").hasRole(UserType.USER.name())// .anyRequest().authenticated()
+                    .requestMatchers("/confirmation").hasRole(UserType.USER.name())
             ).formLogin(
                     form -> form
                             .loginPage("/login")

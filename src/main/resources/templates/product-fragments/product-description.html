@@ -41,6 +41,12 @@
                         <div class="row">
                             <div th:replace="~{product-fragments/product-description-fragments/reviews :: reviews}"></div>
                             <div th:replace="~{product-fragments/product-description-fragments/add-review :: add-review}"></div>
+                            <div th:unless="${isAuthenticated}">
+                                <p>Войдите чтобы оставлять отзывы на товары</p>
+                                <div>
+                                    <a class="button primary-btn" th:href="@{/login}">Войти</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

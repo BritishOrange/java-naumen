@@ -82,9 +82,14 @@ public class LoadMockData implements CommandLineRunner {
     }
 
     private void loadProducts() throws StreamReadException, DatabindException, IOException {
-        File file = new File("src/main/resources/mocks/products/notebooks.json");
+        loadProductCategory("src/main/resources/mocks/products/notebooks.json", "Ноутбуки");
+        loadProductCategory("src/main/resources/mocks/products/smartphones.json", "Смартфоны");
+    }
+
+    private void loadProductCategory(String fileName, String categoryName) throws StreamReadException, DatabindException, IOException {
+        File file = new File(fileName);
         List<Product> products = objectMapper.readValue(file, new TypeReference<List<Product>>(){});
-        Category notebookCategory = categoryRepository.findCategoryByTitle("Ноутбуки");
+        Category notebookCategory = categoryRepository.findCategoryByTitle(categoryName);
 
         for (Product product : products) {
             product.setCategory(notebookCategory);

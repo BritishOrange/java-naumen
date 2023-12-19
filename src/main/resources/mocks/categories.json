@@ -3,5 +3,10 @@
         "id": null,
         "title": "Ноутбуки",
         "parentId": "-1"
+    },
+    {
+        "id": null,
+        "title": "Смартфоны",
+        "parentId": "-1"
     }
 ]
