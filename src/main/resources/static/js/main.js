@@ -54,7 +54,6 @@ function addListenerForCartProduct() {
         quantity: quantity,
       },
       success: function (response) {
-        console.log(response);
       },
       error: function (xhr, status, error) {
       }
