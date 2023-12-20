@@ -25,29 +25,11 @@
                                 <li><a class="active" th:text="${product.category.title}" href="#"><span> </span></a></li>
                                 <li><a href="#"><span>Наличие</span>: В продаже</a></li>
                             </ul>
-                            <div class="product_count">
+                            <div class="product_count" th:id="${product.id}">
                                 <label for="qty">Количество:</label>
-                                <!-- <button
-                                    onclick=
-                                    "
-                                        var result = document.getElementById('sst'); 
-                                        var sst = result.value; 
-                                        if( !isNaN( sst )) result.value++;
-                                        return false;
-                                    "
-                                    class="increase items-count" type="button"><i class="ti-angle-left"></i></button> -->
                                 <input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:"
                                     class="input-text qty">
-                                <!-- <button
-                                    onclick=
-                                    "
-                                        var result = document.getElementById('sst'); 
-                                        var sst = result.value; 
-                                        if( !isNaN( sst ) && sst > 0) result.value--;
-                                        return false;
-                                    "
-                                    class="reduced items-count" type="button"><i class="ti-angle-right"></i></button> -->
-                                <a class="button primary-btn" href="#">В корзину</a>
+                                <a class="button primary-btn" >В корзину</a>
                             </div>
                         </div>
                     </div>

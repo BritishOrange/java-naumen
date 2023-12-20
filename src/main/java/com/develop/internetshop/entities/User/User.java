@@ -43,19 +43,7 @@ public class User implements UserDetails {
 
     @Column(name = "first_name", length = 50)
     @Schema(description = "Имя")
-    private String firstName;
-
-    @Column(name = "middle_name", length = 50)
-    @Schema(description = "Отчество")
-    private String middleName;
-
-    @Column(name = "last_name", length = 50)
-    @Schema(description = "Фамилия")
-    private String lastName;
-
-    @Column(name = "mobile", length = 15)
-    @Schema(description = "Мобильный телефон")
-    private String mobile;
+    private String name;
 
     @Column(name = "email", unique = true, length = 50, nullable = false)
     @Schema(description = "Email")

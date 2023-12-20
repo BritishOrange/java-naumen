@@ -10,6 +10,58 @@ let higherPrice = 0;
 let compareState = 0;
 let searchText = '';
 
+function addCartListener() {
+  const productCards = document.querySelectorAll(".product-card");
+
+  productCards.forEach(productCard => {
+    let productId = productCard.id;
+    let button = productCard.querySelectorAll("button")[1];
+
+    button.addEventListener("click", () => {
+      $.ajax({
+        type: 'POST',
+        url: '/api/v1/cart-item/post-item',
+        data: {
+          id: productId,
+          quantity: 1,
+        },
+        success: function (response) {
+          console.log(response);
+        },
+        error: function (xhr, status, error) {
+        }
+      })
+    });
+
+  });
+}
+
+function addListenerForCartProduct() {
+  const cartElement = document.querySelector(".product_count");
+  if (cartElement == null) return;
+  const button = cartElement.querySelector(".button");
+  if (button == null) return;
+
+  const productId = cartElement.id;
+  const quantity = document.querySelector(".product_count").querySelector("input").value;
+
+  button.addEventListener("click", () => {
+    $.ajax({
+      type: 'POST',
+      url: '/api/v1/cart-item/post-item',
+      data: {
+        id: productId,
+        quantity: quantity,
+      },
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (xhr, status, error) {
+      }
+    })
+  });
+}
+
 function setEventListenersForCartItems() {
   const cartItems = document.querySelectorAll(".product-row");
   const resSum = document.querySelector(".res-sum");
@@ -234,12 +286,6 @@ $(function () {
     dots: false
   });
 
-  //------- mailchimp --------//  
-  function mailChimp() {
-    $('#mc_embed_signup').find('form').ajaxChimp();
-  }
-  mailChimp();
-
   //------- fixed navbar --------//  
   $(window).scroll(function () {
     var sticky = $('.header_area'),
@@ -287,3 +333,5 @@ $(function () {
 showCartNum();
 setEventListenersForCartItems();
 makePurchaseHandler();
+addCartListener();
+addListenerForCartProduct();
