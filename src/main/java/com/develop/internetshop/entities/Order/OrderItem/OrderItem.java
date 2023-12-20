@@ -44,21 +44,15 @@ public class OrderItem {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @Column(name = "sku", nullable = false)
-    private String sku;
+    @Column(name = "quantity")
+    private Long quantity;
 
     @Column(name = "price", scale = 2)
     private float price;
-
-    @Column(name = "discount", scale = 2)
-    private float discount;
 
     @Column(name = "created_at")
     private Date createdAt;
 
     @Column(name = "updated_at")
     private Date updatedAt;
-
-    @Column(name = "content", length = 500)
-    private Date content;
 }

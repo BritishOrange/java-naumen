@@ -44,24 +44,12 @@ public class CartItem {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @Column(name = "sku", nullable = false)
-    private String sku;
-
-    @Column(name = "price", scale = 2)
-    private float price;
-
-    @Column(name = "discount", scale = 2)
-    private float discount;
-
-    @Column(name = "is_active")
-    private boolean isActive;
+    @Column(name = "quantity")
+    private Long quantity;
 
     @Column(name = "created_at")
     private Date createdAt;
 
     @Column(name = "updated_at")
     private Date updatedAt;
-
-    @Column(name = "content", length = 500)
-    private Date content;
 }

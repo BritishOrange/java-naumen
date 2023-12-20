@@ -5,6 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.develop.internetshop.entities.Cart.Cart;
+import com.develop.internetshop.entities.Cart.CartRepository;
+import com.develop.internetshop.entities.Cart.CartItem.CartItem;
+import com.develop.internetshop.entities.Cart.CartItem.CartItemRepository;
 import com.develop.internetshop.entities.Category.Category;
 import com.develop.internetshop.entities.Category.CategoryRepository;
 import com.develop.internetshop.entities.Product.Product;
@@ -13,7 +17,6 @@ import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpe
 import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecificationRepository;
 import com.develop.internetshop.entities.Review.Review;
 import com.develop.internetshop.entities.Review.ReviewRepository;
-import com.develop.internetshop.entities.Tag.TagRepository;
 import com.develop.internetshop.entities.User.User;
 import com.develop.internetshop.entities.User.UserRepository;
 import com.fasterxml.jackson.core.exc.StreamReadException;
@@ -24,8 +27,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
-
 
 /**
  * LoadMockData
@@ -44,7 +47,9 @@ public class LoadMockData implements CommandLineRunner {
     @Autowired
     private ReviewRepository reviewRepository;
     @Autowired
-    private TagRepository tagRepository;
+    private CartRepository cartRepository;
+    @Autowired
+    private CartItemRepository cartItemRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -58,8 +63,7 @@ public class LoadMockData implements CommandLineRunner {
         loadUsers();
         loadCategories();
         loadProducts();
-        // loadTags();
-        // loadReviews();
+        loadVasyaCart();
     }
 
     private void setPasswordHash(List<User> users) {
@@ -68,16 +72,32 @@ public class LoadMockData implements CommandLineRunner {
         }
     }
 
+    private void loadVasyaCart() {
+        User vasya = userRepository.findUserByEmail("vasya.pupkin@example.ru");
+        Cart vasyaCart = new Cart(null, vasya, null, new Date(), new Date());
+
+        Product notebook = productRepository.findProductByTitle("Ноутбук NoteBest 4K");
+        Product smartphone = productRepository.findProductByTitle("Смартфон Red Fox B2");
+
+        CartItem notebookItem = new CartItem(null, notebook, vasyaCart, 1l, new Date(), new Date());
+        CartItem smartphoneItem = new CartItem(null, smartphone, vasyaCart, 2l, new Date(), new Date());
+
+        cartRepository.save(vasyaCart);
+        cartItemRepository.saveAll(List.of(notebookItem, smartphoneItem));
+    }
+
     private void loadUsers() throws StreamReadException, DatabindException, IOException {
         File file = new File("src/main/resources/mocks/users.json");
-        List<User> users = objectMapper.readValue(file, new TypeReference<>(){});
+        List<User> users = objectMapper.readValue(file, new TypeReference<>() {
+        });
         setPasswordHash(users);
         userRepository.saveAll(users);
     }
 
     private void loadCategories() throws StreamReadException, DatabindException, IOException {
         File file = new File("src/main/resources/mocks/categories.json");
-        List<Category> categories = objectMapper.readValue(file, new TypeReference<>(){});
+        List<Category> categories = objectMapper.readValue(file, new TypeReference<>() {
+        });
         categoryRepository.saveAll(categories);
     }
 
@@ -86,9 +106,11 @@ public class LoadMockData implements CommandLineRunner {
         loadProductCategory("src/main/resources/mocks/products/smartphones.json", "Смартфоны");
     }
 
-    private void loadProductCategory(String fileName, String categoryName) throws StreamReadException, DatabindException, IOException {
+    private void loadProductCategory(String fileName, String categoryName)
+            throws StreamReadException, DatabindException, IOException {
         File file = new File(fileName);
-        List<Product> products = objectMapper.readValue(file, new TypeReference<List<Product>>(){});
+        List<Product> products = objectMapper.readValue(file, new TypeReference<List<Product>>() {
+        });
         Category notebookCategory = categoryRepository.findCategoryByTitle(categoryName);
 
         for (Product product : products) {
@@ -101,7 +123,7 @@ public class LoadMockData implements CommandLineRunner {
             }
 
             User user = userRepository.findUserByEmail("alisa.dolgopolova@example.ru");
-            
+
             for (Review review : reviews) {
                 review.setProduct(product);
                 review.setUser(user);
@@ -113,48 +135,4 @@ public class LoadMockData implements CommandLineRunner {
                 reviewRepository.saveAll(reviews);
         }
     }
-
-    // private void loadTags() throws IOException, CsvException {
-    //     List<String[]> rawData = readData("src\\main\\resources\\mocks\\tags.csv");
-
-    //     List<Tag> tags = new ArrayList<Tag>();
-    //     for (int i = 1; i < rawData.size(); i++) {
-    //         String[] row = rawData.get(i);
-    //         tags.add(new Tag(null, row[0], row[1], row[2], row[3]));
-    //     }
-
-    //     tagRepository.saveAll(tags);
-    // }
-
-    // private void loadReviews() throws IOException, CsvException {
-    //     List<String[]> rawData = readData("src\\main\\resources\\mocks\\reviews.csv");
-
-    //     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-
-    //     List<User> users = new ArrayList<User>();
-    //     List<Product> products = new ArrayList<Product>();
-
-    //     long usersNum = userRepository.count();
-    //     long productsNum = productRepository.count();
-
-    //     Random random = new Random();
-
-    //     userRepository.findAll().forEach(u -> users.add(u));
-    //     productRepository.findAll().forEach(p -> products.add(p));
-
-    //     List<Review> reviews = new ArrayList<Review>();
-    //     for (int i = 1; i < rawData.size(); i++) {
-    //         String[] row = rawData.get(i);
-    //         reviews.add(new Review(
-    //             null, 
-    //             users.get(random.nextInt((int) usersNum)), 
-    //             products.get(random.nextInt((int) productsNum)), 
-    //             row[2], 
-    //             Byte.parseByte(row[0]), 
-    //             Date.from(LocalDateTime.parse(row[1], formatter).atZone(ZoneId.systemDefault()).toInstant())
-    //         ));
-    //     }
-
-    //     reviewRepository.saveAll(reviews);
-    // }
 }

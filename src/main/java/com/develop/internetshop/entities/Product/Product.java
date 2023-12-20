@@ -86,15 +86,11 @@ public class Product {
 
     @Column(name = "sku", nullable = false)
     @Schema(description = "Количество товара на складе")
-    private String sku;
+    private Long sku;
 
     @Column(name = "price", scale = 2, nullable = false)
     @Schema(description = "Цена товара")
     private float price;
-
-    @Column(name = "discount", scale = 2)
-    @Schema(description = "Скидка")
-    private float discount;
 
     @Column(name = "created_at", nullable = false)
     @Schema(description = "Время добавления товара")
@@ -104,15 +100,4 @@ public class Product {
     @Schema(description = "Время последнего изменения")
     private Date updatedAt;
 
-    @Column(name = "published_at")
-    @Schema(description = "Время публикации")
-    private Date publishedAt;
-
-    @Column(name = "starts_at")
-    @Schema(description = "Начало продаж")
-    private Date startsAt;
-
-    @Column(name = "ends_at")
-    @Schema(description = "Конец продаж")
-    private Date endsAt;
 }

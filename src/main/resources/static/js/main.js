@@ -1,5 +1,6 @@
 const productsList = document.getElementById("products-list");
 const searchBar = document.getElementById("search-bar");
+const cartItemShow = document.getElementById("cart-item-num");
 const parser = new DOMParser();
 
 let lastChangeTimestamp = 0;
@@ -8,6 +9,77 @@ let lowerPrice = 0;
 let higherPrice = 0;
 let compareState = 0;
 let searchText = '';
+
+function setEventListenersForCartItems() {
+  const cartItems = document.querySelectorAll(".product-row");
+  const resSum = document.querySelector(".res-sum");
+  if (resSum == null) return;
+  resSum.innerHTML = 0;
+
+  cartItems.forEach(cartItem => {
+    inputElement = cartItem.querySelector(".product_count").querySelector("input");
+
+    const productPrice = cartItem.querySelector(".product-price").innerHTML;
+    const productSum = cartItem.querySelector(".product-sum");
+
+    productSum.innerHTML = productPrice * inputElement.value
+    resSum.innerHTML = new Number(resSum.innerHTML) + new Number(productSum.innerHTML)
+    inputElement.addEventListener('change', (e) => {
+      resSum.innerHTML = new Number(resSum.innerHTML) - new Number(productSum.innerHTML)
+      productSum.innerHTML = productPrice * e.target.value
+      resSum.innerHTML = new Number(resSum.innerHTML) + new Number(productSum.innerHTML)
+    });
+  });
+}
+
+function makePurchaseHandler() {
+  const purchaseButton = document.querySelector("#make-purchase-button");
+  if (purchaseButton == null) return;
+
+  purchaseButton.addEventListener("click", () => {
+    const products = document.querySelectorAll(".product-row");
+    const resProducts = []
+
+    products.forEach(product => {
+      const id = product.querySelector("input").id;
+      const quantity = product.querySelector("input").value;
+
+      resProducts.push({
+        id: id,
+        quantity: quantity
+      });
+    });
+
+    res = {
+      postedCartItems: resProducts 
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: '/cart',
+      contentType: 'application/json',
+      data: JSON.stringify(res),
+      success: function (response) {
+        // window.location.href = '/confirmation'
+      },
+      error: function (xhr, status, error) {
+      }
+    })
+  })
+}
+
+function showCartNum() {
+  $.ajax({
+    type: 'GET',
+    url: '/api/v1/cart-item/find-user-items',
+    data: {},
+    success: function (response) {
+      cartItemShow.innerHTML = response.length;
+    },
+    error: function (xhr, status, error) {
+    }
+  })
+}
 
 function updateLastUpdateTimestamp() {
   lastChangeTimestamp = new Date().getTime();
@@ -100,7 +172,7 @@ $(function () {
   //------- Active Nice Select --------//
   $('select').niceSelect();
 
-  $('select').on('change', function() {
+  $('select').on('change', function () {
     setCompareState($(this).val());
     debouncedMakeAjaxRequest();
   });
@@ -212,3 +284,6 @@ $(function () {
   }
 });
 
+showCartNum();
+setEventListenersForCartItems();
+makePurchaseHandler();

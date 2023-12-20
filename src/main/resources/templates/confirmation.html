@@ -10,83 +10,11 @@
   <header th:replace="~{common-fragments/header :: header}"></header>
   <section th:replace="~{confirmation-fragments/banner :: banner}"></section>
 
-  <!--================Order Details Area =================-->
   <section class="order_details section-margin--small">
     <div class="container">
-      <p class="text-center billing-alert">Thank you. Your order has been received.</p>
-      <div class="row mb-5">
-        <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Информация</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Номер заказа</td>
-                <td>: 60235</td>
-              </tr>
-              <tr>
-                <td>Date</td>
-                <td>: Oct 03, 2017</td>
-              </tr>
-              <tr>
-                <td>Итого</td>
-                <td>: USD 2210</td>
-              </tr>
-              <tr>
-                <td>Метод оплаты</td>
-                <td>: Check payments</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Адрес оплаты</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Street</td>
-                <td>: 56/8 panthapath</td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td>: Dhaka</td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td>: Bangladesh</td>
-              </tr>
-              <tr>
-                <td>Postcode</td>
-                <td>: 1205</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Адрес отправки</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Street</td>
-                <td>: 56/8 panthapath</td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td>: Dhaka</td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td>: Bangladesh</td>
-              </tr>
-              <tr>
-                <td>Postcode</td>
-                <td>: 1205</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
+      <p class="text-center billing-alert">Спасибо. Ваш заказ поступил в обработку.</p>
       <div class="order_details_table">
-        <h2>Order Details</h2>
+        <h2>Детали заказа</h2>
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -97,23 +25,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr th:each="orderItem, iterStat : ${orderItems}">
                 <td>
-                  <p>Pixelstore fresh Blackberry</p>
+                  <p th:text="${orderItem.product.title}">product title</p>
                 </td>
                 <td>
-                  <h5>x 02</h5>
-                </td>
-                <td>
-                  <p>$720.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Pixelstore fresh Blackberry</p>
-                </td>
-                <td>
-                  <h5>x 02</h5>
+                  <h5 th:text="${orderItem.quantity}">quantity</h5>
                 </td>
                 <td>
                   <p>$720.00</p>
@@ -121,40 +38,7 @@
               </tr>
               <tr>
                 <td>
-                  <p>Pixelstore fresh Blackberry</p>
-                </td>
-                <td>
-                  <h5>x 02</h5>
-                </td>
-                <td>
-                  <p>$720.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>Subtotal</h4>
-                </td>
-                <td>
-                  <h5></h5>
-                </td>
-                <td>
-                  <p>$2160.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>Shipping</h4>
-                </td>
-                <td>
-                  <h5></h5>
-                </td>
-                <td>
-                  <p>Flat rate: $50.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>Total</h4>
+                  <h4>Итого</h4>
                 </td>
                 <td>
                   <h5></h5>
@@ -169,7 +53,6 @@
       </div>
     </div>
   </section>
-  <!--================End Order Details Area =================-->
 
   <footer th:replace="~{common-fragments/footer :: footer}"></footer>
   <section th:replace="~{common-fragments/scripts :: scripts}" th:remove="tag"></section>

@@ -40,28 +40,10 @@ public class Order {
     @Column(name = "session_id", length = 100)
     private String sessionId;
 
-    @Column(name = "token", length = 100)
-    private String Token;
-
-    @Column(name = "status", length = 100)
-    private OrderStatus status;
-
-    @Column(name = "sub_total", scale = 2)
-    private float subTotal;
-
-    @Column(name = "item_discount", scale = 2)
-    private float itemDiscount;
-
-    @Column(name = "total", scale = 2)
-    private float total;
-
     @Column(name = "created_at")
     private Date createdAt;
 
     @Column(name = "updated_at")
     private Date updatedAt;
-
-    @Column(name = "content")
-    private String content;
 
 }

@@ -39,21 +39,12 @@ public class Cart {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "session_id", length = 100)
+    @Column(name = "session_id", length = 10000)
     private String sessionId;
-
-    @Column(name = "token", length = 100)
-    private String Token;
-
-    @Column(name = "status")
-    private CartStatus status;
 
     @Column(name = "created_at")
     private Date createdAt;
 
     @Column(name = "updated_at")
     private Date updatedAt;
-
-    @Column(name = "content")
-    private String content;
 }

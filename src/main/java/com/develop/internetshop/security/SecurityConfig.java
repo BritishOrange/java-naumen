@@ -24,9 +24,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // анонимный пользователь
         http
-            .csrf(Customizer.withDefaults())
+            .csrf().disable()
             .authorizeHttpRequests((authorize) -> authorize
                     .requestMatchers("/", "/register", "/category**", "/product/**").permitAll()
                     .requestMatchers("/css/**").permitAll()

@@ -1,7 +1,6 @@
 package com.develop.internetshop.services;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -19,8 +18,6 @@ import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpe
 import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecificationRepository;
 import com.develop.internetshop.entities.Review.Review;
 import com.develop.internetshop.entities.Review.ReviewRepository;
-import com.develop.internetshop.entities.Tag.Tag;
-import com.develop.internetshop.entities.Tag.TagRepository;
 import com.develop.internetshop.entities.User.User;
 
 import org.springframework.ui.Model;
@@ -37,8 +34,6 @@ public class ProductService {
     private CategoryRepository categoryRepository;
     @Autowired
     private ProductSpecificationRepository productSpecificationRepository;
-    @Autowired
-    private TagRepository tagRepository;
     @Autowired
     private ReviewRepository reviewRepository;
 
@@ -108,10 +103,8 @@ public class ProductService {
         List<Product> products;
         products = productRepository.findAll();
         List<Category> categories = categoryRepository.findAll();
-        List<Tag> tags = tagRepository.findAll();
         model.addAttribute("products", products);
         model.addAttribute("categories", categories);
-        model.addAttribute("tags", tags);
     }
 
     public void setSingleProductAttributes(String id, Model model) {
