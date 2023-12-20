@@ -2,7 +2,6 @@ package com.develop.internetshop.services;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,7 +122,7 @@ public class ProductService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         Product product = productRepository.getReferenceById(id);
-        Review newReview = new Review(null, user, product, text, rating, new Date());
+        Review newReview = new Review(null, user, product, text, rating);
         reviewRepository.save(newReview);
     }
 

@@ -1,7 +1,5 @@
 package com.develop.internetshop.services;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,7 +33,7 @@ public class RegisterService {
     public void registerUser(
         String name, String email, String password, String confirmPassword
     ) {
-        User user = new User(null, name, email, password, UserType.USER, new Date(), new Date());
+        User user = new User(null, name, email, password, UserType.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }

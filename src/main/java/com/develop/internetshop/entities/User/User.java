@@ -1,7 +1,6 @@
 package com.develop.internetshop.entities.User;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -57,14 +56,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Schema(description = "Тип пользователя (админ, обычный пользователь, работник)")
     private UserType type;
-
-    @Column(name = "registered_at")
-    @Schema(description = "Дата регистрации")
-    private Date registeredAt;
-
-    @Column(name = "last_login")
-    @Schema(description = "Когда последний раз был в сети")
-    private Date lastLogin;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Table;
 
-import java.util.Date;
-
 import com.develop.internetshop.entities.Cart.Cart;
 import com.develop.internetshop.entities.Product.Product;
 
@@ -46,10 +44,4 @@ public class CartItem {
 
     @Column(name = "quantity")
     private Long quantity;
-
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Column(name = "updated_at")
-    private Date updatedAt;
 }

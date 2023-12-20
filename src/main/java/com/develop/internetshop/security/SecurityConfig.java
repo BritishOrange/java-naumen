@@ -28,7 +28,7 @@ public class SecurityConfig {
             .authorizeHttpRequests((authorize) -> authorize
                     .requestMatchers("/", "/register", "/category**", "/product/**").permitAll()
                     .requestMatchers("/css/**", "/scss/**", "/js/**", "/vendors/**", "/img/**").permitAll()
-                    .requestMatchers("/swagger-ui/**", "/v3/**", "/swagger-ui.html").permitAll()
+                    .requestMatchers("/swagger-ui/**", "/v3/**", "/swagger-ui.html").hasRole(UserType.ADMIN.name())
                     .requestMatchers("/api/v1/**").permitAll()
                     .requestMatchers("/cart").hasRole(UserType.USER.name())
                     .requestMatchers("/confirmation").hasRole(UserType.USER.name())

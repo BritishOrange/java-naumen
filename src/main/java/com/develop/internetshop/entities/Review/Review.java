@@ -1,6 +1,5 @@
 package com.develop.internetshop.entities.Review;
 
-import java.util.Date;
 
 import com.develop.internetshop.entities.Product.Product;
 import com.develop.internetshop.entities.User.User;
@@ -48,7 +47,4 @@ public class Review {
 
     @Column(name = "rating")
     private int rating;
-
-    @Column(name = "published_at", nullable = false)
-    private Date publishedAt;
 }

@@ -4,11 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Table;
 
-import java.util.Date;
-
 import com.develop.internetshop.entities.User.User;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,14 +33,4 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
-    @Column(name = "session_id", length = 100)
-    private String sessionId;
-
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Column(name = "updated_at")
-    private Date updatedAt;
-
 }

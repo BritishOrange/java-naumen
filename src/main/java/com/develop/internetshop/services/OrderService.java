@@ -53,7 +53,7 @@ public class OrderService {
 
     public void postOrder(PostedCart postedCart, User user) {
         Float totalSum = 0.0f;
-        Order newOrder = new Order(null, user, null, new Date(), new Date());
+        Order newOrder = new Order(null, user);
         orderRepository.save(newOrder);
         for (PostedCartItem postedCartItem : postedCart.getPostedCartItems()) {
             Product product = productRepository.findById(postedCartItem.getId()).get();

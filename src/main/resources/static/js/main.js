@@ -26,7 +26,6 @@ function addCartListener() {
           quantity: 1,
         },
         success: function (response) {
-          console.log(response);
         },
         error: function (xhr, status, error) {
         }
@@ -125,7 +124,10 @@ function showCartNum() {
     url: '/api/v1/cart-item/find-user-items',
     data: {},
     success: function (response) {
-      cartItemShow.innerHTML = response.length;
+      if (response.length < 200)
+        cartItemShow.innerHTML = response.length;
+      else 
+        cartItemShow.innerHTML = 0
     },
     error: function (xhr, status, error) {
     }

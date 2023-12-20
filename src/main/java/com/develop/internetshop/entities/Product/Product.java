@@ -1,9 +1,6 @@
 package com.develop.internetshop.entities.Product;
 
-import java.util.Date;
 import java.util.List;
-
-// import org.hibernate.mapping.List;
 
 import com.develop.internetshop.entities.Category.Category;
 import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecification;
@@ -39,8 +36,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Schema(description = "Сущность товара")
-
-// @JsonIgnoreProperties({ "specifications", "reviews",  })
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -50,14 +45,6 @@ public class Product {
     @Column(name = "title", length = 75, nullable = false)
     @Schema(description = "Название товара")
     private String title;
-
-    @Column(name = "meta_title", length = 200)
-    @Schema(description = "Мета заголовок: как отображается ссылка на страничку с товаром при поиске")
-    private String metaTitle;
-
-    @Column(name = "slug", length = 100, nullable = false)
-    @Schema(description = "Название эндпоинта странички с товаром")
-    private String slug;
 
     @Column(name = "description", length = 10000)
     @Schema(description = "Описание товара")
@@ -89,13 +76,4 @@ public class Product {
     @Column(name = "price", scale = 2, nullable = false)
     @Schema(description = "Цена товара")
     private float price;
-
-    @Column(name = "created_at", nullable = false)
-    @Schema(description = "Время добавления товара")
-    private Date createdAt;
-
-    @Column(name = "updated_at")
-    @Schema(description = "Время последнего изменения")
-    private Date updatedAt;
-
 }

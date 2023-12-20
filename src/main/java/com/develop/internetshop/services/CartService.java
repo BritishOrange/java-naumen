@@ -1,7 +1,6 @@
 package com.develop.internetshop.services;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +44,12 @@ public class CartService {
     public void postCartItem(User user, String id, Long quantity) {
         Cart userCart = cartRepository.findCartByUser(user);
         if (userCart == null) {
-            userCart = new Cart(null, user, null, new Date(), new Date());
+            userCart = new Cart(null, user);
             cartRepository.save(userCart);
         }
         Product product = productRepository.getReferenceById(id);
 
-        CartItem newCartItem = new CartItem(null, product, userCart, quantity, new Date(), new Date());
+        CartItem newCartItem = new CartItem(null, product, userCart, quantity);
         for (CartItem cartItem : cartItemRepository.findAll()) {
             if (cartItem.getProduct().getId() == id) {
                 cartItem.setQuantity(cartItem.getQuantity() + 1);

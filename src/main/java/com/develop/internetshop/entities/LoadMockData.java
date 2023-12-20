@@ -27,7 +27,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -74,13 +73,13 @@ public class LoadMockData implements CommandLineRunner {
 
     private void loadVasyaCart() {
         User vasya = userRepository.findUserByEmail("vasya.pupkin@example.ru");
-        Cart vasyaCart = new Cart(null, vasya, null, new Date(), new Date());
+        Cart vasyaCart = new Cart(null, vasya);
 
         Product notebook = productRepository.findProductByTitle("Ноутбук NoteBest 4K");
         Product smartphone = productRepository.findProductByTitle("Смартфон Red Fox B2");
 
-        CartItem notebookItem = new CartItem(null, notebook, vasyaCart, 1l, new Date(), new Date());
-        CartItem smartphoneItem = new CartItem(null, smartphone, vasyaCart, 2l, new Date(), new Date());
+        CartItem notebookItem = new CartItem(null, notebook, vasyaCart, 1l);
+        CartItem smartphoneItem = new CartItem(null, smartphone, vasyaCart, 2l);
 
         cartRepository.save(vasyaCart);
         cartItemRepository.saveAll(List.of(notebookItem, smartphoneItem));
