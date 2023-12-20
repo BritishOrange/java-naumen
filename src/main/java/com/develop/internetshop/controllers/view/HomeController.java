@@ -113,7 +113,15 @@ public class HomeController {
         Order order  = orderList.get(orderList.size() - 1);
 
         List<OrderItem> orderItems = orderItemRepository.findOrderItemByOrder(order);
-        model.addAttribute("orderItems", orderItems);
+        Float totalSum = 0.0f;
+
+        for (OrderItem orderItem : orderItems) {
+            if (orderItem.getQuantity() != 0)
+                totalSum += orderItem.getPrice() * orderItem.getQuantity();
+        }
+
+        model.addAttribute("orderItems", orderItems.stream().filter(oi -> oi.getQuantity() != 0).toList());
+        model.addAttribute("totalSum", totalSum);
 
         return "confirmation";
     }

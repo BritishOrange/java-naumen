@@ -32,8 +32,8 @@
                 <td>
                   <h5 th:text="${orderItem.quantity}">quantity</h5>
                 </td>
-                <td>
-                  <p>$720.00</p>
+                <td th:with="subTotal=${orderItem.price * orderItem.quantity}">
+                  <p><span th:text="${subTotal}"></span> ₽</p>
                 </td>
               </tr>
               <tr>
@@ -44,7 +44,7 @@
                   <h5></h5>
                 </td>
                 <td>
-                  <h4>$2210.00</h4>
+                  <h4><span th:text="${totalSum}"></span> ₽</h4>
                 </td>
               </tr>
             </tbody>

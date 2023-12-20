@@ -60,7 +60,7 @@ function makePurchaseHandler() {
       contentType: 'application/json',
       data: JSON.stringify(res),
       success: function (response) {
-        // window.location.href = '/confirmation'
+        window.location.href = '/confirmation'
       },
       error: function (xhr, status, error) {
       }
