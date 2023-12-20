@@ -32,7 +32,7 @@
                 <td>
                   <h5 th:text="${orderItem.quantity}">quantity</h5>
                 </td>
-                <td th:with="subTotal=${orderItem.price * orderItem.quantity}">
+                <td th:with="subTotal=${orderItem.product.price * orderItem.quantity}">
                   <p><span th:text="${subTotal}"></span> ₽</p>
                 </td>
               </tr>

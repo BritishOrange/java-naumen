@@ -1,4 +1,4 @@
-package com.develop.internetshop.services;
+package com.develop.internetshop.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -8,10 +8,8 @@ import java.util.List;
 import com.develop.internetshop.entities.Category.Category;
 import com.develop.internetshop.entities.Product.ProductSpecification.ProductSpecification;
 import com.develop.internetshop.entities.Review.Review;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

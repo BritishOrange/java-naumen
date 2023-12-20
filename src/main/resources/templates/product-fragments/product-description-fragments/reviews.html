@@ -27,7 +27,7 @@
                 <div th:each="review, iterStat : ${reviews}" th:if="${iterStat.index lt 5}" class="review_item">
                     <div class="media">
                         <div class="media-body" th:with="end=${review.getRating()}">
-                            <h4 th:text="${review.user.firstName}">username</h4>
+                            <h4 th:text="${review.user.name}">username</h4>
                             <i th:each="i : ${#numbers.sequence(1, end)} " class="fa fa-star"></i>
                         </div>
                     </div>
