@@ -27,15 +27,9 @@ public class SecurityConfig {
             .csrf().disable()
             .authorizeHttpRequests((authorize) -> authorize
                     .requestMatchers("/", "/register", "/category**", "/product/**").permitAll()
-                    .requestMatchers("/css/**").permitAll()
-                    .requestMatchers("/scss/**").permitAll()
-                    .requestMatchers("/js/**").permitAll()
-                    .requestMatchers("/vendors/**").permitAll()
-                    .requestMatchers("/img/**").permitAll()
+                    .requestMatchers("/css/**", "/scss/**", "/js/**", "/vendors/**", "/img/**").permitAll()
+                    .requestMatchers("/swagger-ui/**", "/v3/**", "/swagger-ui.html").permitAll()
                     .requestMatchers("/api/v1/**").permitAll()
-                    .requestMatchers("/swagger-ui/**").permitAll()
-                    .requestMatchers("/v3/**").permitAll()
-                    .requestMatchers("/swagger-ui.html").permitAll()
                     .requestMatchers("/cart").hasRole(UserType.USER.name())
                     .requestMatchers("/confirmation").hasRole(UserType.USER.name())
             ).formLogin(
